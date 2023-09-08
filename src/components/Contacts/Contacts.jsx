@@ -1,5 +1,5 @@
 import React from 'react';
-import { selectors } from 'redux/index';
+import { selectors } from 'redux/contacts/index';
 import { useSelector } from 'react-redux';
 
 import { Div, Error, List } from './Contacts.styles';

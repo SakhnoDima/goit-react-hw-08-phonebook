@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const Header = styled.header`
+export const Header = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
-export const MainPage = styled.div`
+export const MainPage = styled.section`
   margin: 40px auto;
   padding: 16px;
   width: ${({ theme }) => theme.spacing(200)};

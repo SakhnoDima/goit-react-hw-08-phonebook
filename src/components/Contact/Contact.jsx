@@ -1,5 +1,5 @@
 import React from 'react';
-import { selectors, operations } from 'redux/index';
+import { selectors, operations } from 'redux/contacts/index';
 import { RiContactsBook2Fill, RiDeleteBin5Line } from 'react-icons/ri';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Item } from './Contact.styles';

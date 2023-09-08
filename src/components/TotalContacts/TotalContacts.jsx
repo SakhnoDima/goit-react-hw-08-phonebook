@@ -1,7 +1,7 @@
 import React from 'react';
 import { Total, TotalBox, TotalIcon } from './TotalContacts.style';
 import { useSelector } from 'react-redux';
-import { getContacts } from 'redux/selectors';
+import { getContacts } from 'redux/contacts/selectors';
 
 const TotalContacts = () => {
   const contacts = useSelector(getContacts);

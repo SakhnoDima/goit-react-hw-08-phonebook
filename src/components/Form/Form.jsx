@@ -3,7 +3,7 @@ import { Formik, ErrorMessage } from 'formik';
 import { object, string } from 'yup';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
-import { operations, selectors } from 'redux/index';
+import { operations, selectors } from 'redux/contacts/index';
 
 import { Label, Button, Forma, Input, Error } from './Form.styles';
 import { Spinner } from 'components/Spinner/Spinner';
@@ -18,8 +18,6 @@ const schema = object({
 });
 
 const Forms = ({ onSubmit }) => {
-  // const isLoading = useSelector(selectors.getIsLoading);
-  // const error = useSelector(selectors.getError);
   const loading = useSelector(selectors.getLoadState);
   const dispatch = useDispatch();
   const contacts = useSelector(selectors.getContacts);
