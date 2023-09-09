@@ -4,16 +4,21 @@ import { useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Forms, { IconButton, Modal } from '../Form';
-import { Contacts } from '../Contacts';
-import Filter from '../Filter';
-import { MainPage, Button, Title, Title2, Header } from '../styles/App.styles';
+import Forms, { IconButton, Modal } from '../components/Form';
+import { Contacts } from '../components/Contacts';
+import Filter from '../components/Filter';
+import {
+  MainPage,
+  Button,
+  Title,
+  Title2,
+  Header,
+} from '../components/styles/App.styles';
 
-import TotalContacts from '../TotalContacts/TotalContacts';
+import TotalContacts from '../components/TotalContacts/TotalContacts';
+import { operations } from '../redux/contacts/index';
 
-import { operations } from '../../redux/contacts/index';
-
-export const ContactsSection = () => {
+const ContactsSection = () => {
   const [showModal, setModalShow] = useState(false);
 
   const dispatch = useDispatch();
@@ -52,3 +57,5 @@ export const ContactsSection = () => {
     </MainPage>
   );
 };
+
+export default ContactsSection;

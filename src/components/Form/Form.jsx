@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { operations, selectors } from 'redux/contacts/index';
 
 import { Label, Button, Forma, Input, Error } from './Form.styles';
-import { Spinner } from 'components/Spinner/Spinner';
+
 import { KEY_LS } from 'components/helpers/themtoggle';
 
 const schema = object({
@@ -85,7 +85,7 @@ const Forms = ({ onSubmit }) => {
             <ErrorMessage component={Error} name="number" />
           </Label>
           <Button disabled={loading} type="submit" title={'Add contact'}>
-            {loading ? <Spinner /> : 'Add contact'}
+            Add contact
           </Button>
         </Forma>
       </Formik>

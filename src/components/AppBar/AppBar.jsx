@@ -13,7 +13,7 @@ const AppBar = () => {
     <Header>
       <nav>
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/contacts">Contacts</NavLink>
+        {isLogIn && <NavLink to="/contacts">Contacts</NavLink>}
       </nav>
       {isLogIn ? <UserMenu /> : <AuthNav />}
       <ThemeButton />

@@ -5,8 +5,9 @@ const initialState = {
   user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
-  isLoading: false,
+
   error: null,
+  isRefreshing: false,
 };
 
 const authSlice = createSlice({
@@ -14,55 +15,45 @@ const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(register.pending, state => {
-        state.isLoading = true;
-      })
+
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
-        state.isLoading = false;
       })
       .addCase(register.rejected, (state, action) => {
-        state.isLoading = false;
         state.error = action.payload;
       })
-      .addCase(logIn.pending, state => {
-        state.isLoading = true;
-      })
+
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
-        state.isLoading = false;
       })
       .addCase(logIn.rejected, (state, action) => {
-        state.isLoading = false;
         state.error = action.payload;
       })
-      .addCase(logOut.pending, state => {
-        state.isLoading = true;
-      })
+
       .addCase(logOut.fulfilled, state => {
         state.user = { name: null, email: null };
         state.isLoggedIn = false;
         state.token = null;
       })
       .addCase(logOut.rejected, (state, action) => {
-        state.isLoading = false;
         state.error = action.payload;
         state.isLoggedIn = false;
         state.error = null;
       })
       .addCase(refreshUser.pending, state => {
-        state.isLoading = true;
+        state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
+        state.isRefreshing = false;
         state.user = action.payload;
         state.isLoggedIn = true;
       })
       .addCase(refreshUser.rejected, (state, action) => {
-        state.isLoading = false;
+        state.isRefreshing = false;
         state.error = action.payload;
         state.isLoggedIn = false;
         state.error = null;

@@ -1,16 +1,20 @@
 import { Route, Routes } from 'react-router-dom';
-import { ContactsSection } from './ContactsSection/ContactsSection';
-import RegisterPage from '../Pages/RegisterPage/RegisterPage';
-import Home from 'Pages/Home';
-import LoginPage from 'Pages/LogInPage/LoginPage';
-import Layout from './Layout';
-import { useEffect } from 'react';
+import { lazy, useEffect } from 'react';
 import { keepTheme } from './helpers/themtoggle';
-import { useDispatch } from 'react-redux';
-import { operationsAuth } from 'redux/auth';
+import { useDispatch, useSelector } from 'react-redux';
+import { operationsAuth, selectorsAuth } from 'redux/auth';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import PublicRoute from './PublicRoute/PublicRoute';
+
+import Layout from './Layout';
+const Home = lazy(() => import('../Pages/Home'));
+const RegisterPage = lazy(() => import('../Pages/RegisterPage/RegisterPage'));
+const LoginPage = lazy(() => import('Pages/LogInPage/LoginPage'));
+const ContactsSection = lazy(() => import('../Pages/ContactsSection'));
 
 export const App = () => {
   const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectorsAuth.getIsRefreshing);
 
   useEffect(() => {
     dispatch(operationsAuth.refreshUser());
@@ -20,13 +24,44 @@ export const App = () => {
     keepTheme();
   });
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="register" element={<RegisterPage />} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="contacts" element={<ContactsSection />} />
-      </Route>
-    </Routes>
+    !isRefreshing && (
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route
+            index
+            element={
+              <PublicRoute redirectTo="/contacts">
+                <Home />
+              </PublicRoute>
+            }
+          />
+
+          <Route
+            path="register"
+            element={
+              <PublicRoute redirectTo="/contacts" restricted>
+                <RegisterPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <PublicRoute redirectTo="/contacts" restricted>
+                <LoginPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="contacts"
+            element={
+              <PrivateRoute redirectTo="/login">
+                <ContactsSection />
+              </PrivateRoute>
+            }
+          />
+        </Route>
+      </Routes>
+    )
   );
 };
