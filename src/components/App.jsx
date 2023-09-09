@@ -6,8 +6,16 @@ import LoginPage from 'Pages/LogInPage/LoginPage';
 import Layout from './Layout';
 import { useEffect } from 'react';
 import { keepTheme } from './helpers/themtoggle';
+import { useDispatch } from 'react-redux';
+import { operationsAuth } from 'redux/auth';
 
 export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(operationsAuth.refreshUser());
+  }, [dispatch]);
+
   useEffect(() => {
     keepTheme();
   });

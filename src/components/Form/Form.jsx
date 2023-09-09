@@ -43,7 +43,7 @@ const Forms = ({ onSubmit }) => {
 
     const updateContacts = {
       name: name,
-      phone: number,
+      number: number,
     };
     dispatch(operations.addContact(updateContacts)); //!add
 

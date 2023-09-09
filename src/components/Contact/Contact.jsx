@@ -4,14 +4,14 @@ import { RiContactsBook2Fill, RiDeleteBin5Line } from 'react-icons/ri';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Item } from './Contact.styles';
 
-const Contact = ({ id, name, phone }) => {
+const Contact = ({ id, name, number }) => {
   const dispatch = useDispatch();
   const loading = useSelector(selectors.getLoadState);
   return (
     <>
       <Item>
         <RiContactsBook2Fill />
-        {name} : {phone}
+        {name} : {number}
         <Button
           disabled={loading}
           onClick={() => dispatch(operations.deleteContact(id))}
