@@ -1,6 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { Header } from './AppBar.styles';
+import { Header, StyleLink } from './AppBar.styles';
 import { ThemeButton } from 'components/ThemButtton/ThemeButton';
 import { useSelector } from 'react-redux';
 import { selectorsAuth } from 'redux/auth';
@@ -12,8 +11,8 @@ const AppBar = () => {
   return (
     <Header>
       <nav>
-        <NavLink to="/">Home</NavLink>
-        {isLogIn && <NavLink to="/contacts">Contacts</NavLink>}
+        <StyleLink to="/">Home</StyleLink>
+        {isLogIn && <StyleLink to="/contacts">Contacts</StyleLink>}
       </nav>
       {isLogIn ? <UserMenu /> : <AuthNav />}
       <ThemeButton />

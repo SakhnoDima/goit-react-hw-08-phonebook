@@ -21,6 +21,6 @@ export const StyledLink = styled(NavLink)`
   &.active {
     /* background-color: ${({ theme }) => theme.colors.accent}; */
     color: var(--light-text);
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid var(--button-border);
   }
 `;
