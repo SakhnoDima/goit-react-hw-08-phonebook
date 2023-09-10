@@ -6,7 +6,7 @@ import { operationsAuth, selectorsAuth } from 'redux/auth';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import PublicRoute from './PublicRoute/PublicRoute';
 
-import Layout from './Layout';
+import Layout from './Layout/Layout';
 const Home = lazy(() => import('../Pages/Home/Home'));
 const RegisterPage = lazy(() => import('../Pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('Pages/LogInPage/LoginPage'));

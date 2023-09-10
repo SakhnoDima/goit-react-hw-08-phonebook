@@ -5,7 +5,7 @@ import { RegisterPageSection, Title } from './RegisterPage.styles';
 const RegisterPage = () => {
   return (
     <RegisterPageSection>
-      <Title>Refistration Form</Title>
+      <Title>Registration Form</Title>
       <RegisterForm />
     </RegisterPageSection>
   );

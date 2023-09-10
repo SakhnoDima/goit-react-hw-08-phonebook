@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, StyleLink } from './AppBar.styles';
+import { Header, Nav, StyleLink } from './AppBar.styles';
 import { ThemeButton } from 'components/ThemButtton/ThemeButton';
 import { useSelector } from 'react-redux';
 import { selectorsAuth } from 'redux/auth';
@@ -10,10 +10,10 @@ const AppBar = () => {
   const isLogIn = useSelector(selectorsAuth.getIsLoggedIn);
   return (
     <Header>
-      <nav>
+      <Nav>
         <StyleLink to="/">Home</StyleLink>
         {isLogIn && <StyleLink to="/contacts">Contacts</StyleLink>}
-      </nav>
+      </Nav>
       {isLogIn ? <UserMenu /> : <AuthNav />}
       <ThemeButton />
     </Header>

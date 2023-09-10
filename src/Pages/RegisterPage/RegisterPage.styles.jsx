@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 export const RegisterPageSection = styled.section`
   margin: 40px auto;
   padding: 16px;
-  width: 800px;
+  max-width: 800px;
   box-shadow: 0px 4px 10px 4px #9e9e9e;
   border-radius: 4px;
   background-color: var(--dark-background);

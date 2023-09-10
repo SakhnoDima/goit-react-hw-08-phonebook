@@ -4,7 +4,7 @@ export const FormStyle = styled.form`
   margin: 16px auto;
   display: flex;
   flex-direction: column;
-  width: ${({ theme }) => theme.spacing(100)};
+  max-width: ${({ theme }) => theme.spacing(100)};
   padding: ${({ theme }) => theme.spacing(3)};
   background-color: var(--dark-background);
   color: var(--dark-text);

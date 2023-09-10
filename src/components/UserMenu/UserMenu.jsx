@@ -1,5 +1,5 @@
 import React from 'react';
-import { UserMenuBox, UserName } from './UserMenu.styles';
+import { Button, UserMenuBox, UserName } from './UserMenu.styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { operationsAuth, selectorsAuth } from 'redux/auth';
 
@@ -9,9 +9,9 @@ const UserMenu = () => {
   return (
     <UserMenuBox>
       <UserName>{userName}</UserName>
-      <button onClick={() => dispatch(operationsAuth.logOut())} type="button">
+      <Button onClick={() => dispatch(operationsAuth.logOut())} type="button">
         log out{' '}
-      </button>
+      </Button>
     </UserMenuBox>
   );
 };
