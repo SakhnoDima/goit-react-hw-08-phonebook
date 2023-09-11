@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
 import { keepTheme } from './helpers/themtoggle';
 import { useDispatch, useSelector } from 'react-redux';
@@ -61,6 +61,7 @@ export const App = () => {
             }
           />
         </Route>
+        <Route path="*" element={<Navigate to="/" replace={true} />} />
       </Routes>
     )
   );
