@@ -3,6 +3,9 @@ import { Button, FormStyle, Input, Label } from './LogInForm.styles';
 import { useDispatch } from 'react-redux';
 import { operationsAuth } from '../../redux/auth/index';
 
+import { toast } from 'react-toastify';
+import { KEY_LS } from 'components/helpers/themtoggle';
+
 const LogInForm = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
@@ -25,8 +28,11 @@ const LogInForm = () => {
     try {
       await dispatch(operationsAuth.logIn({ email, password })).unwrap();
     } catch (error) {
-      alert(`Something went wrong, try again`);
-      console.log(error);
+      const theme = localStorage.getItem(KEY_LS);
+      toast.error(`Something went wrong, try again`, {
+        autoClose: 2000,
+        theme: `${theme === 'theme-dark' ? 'dark' : 'light'}`,
+      });
     }
     setEmail('');
     setPassword('');

@@ -11,12 +11,19 @@ const Contact = ({ id, name, number }) => {
   const loading = useSelector(selectors.getLoadState);
   const theme = localStorage.getItem(KEY_LS);
 
-  const handleClick = () => {
-    dispatch(operations.deleteContact(id));
-    toast.success(`${name} was deleted from your contacts`, {
-      autoClose: 2000,
-      theme: `${theme === 'theme-dark' ? 'dark' : 'light'}`,
-    });
+  const handleClick = async () => {
+    try {
+      await dispatch(operations.deleteContact(id)).unwrap();
+      toast.success(`${name} was deleted from your contacts`, {
+        autoClose: 2000,
+        theme: `${theme === 'theme-dark' ? 'dark' : 'light'}`,
+      });
+    } catch (error) {
+      toast.error(error, {
+        autoClose: 2000,
+        theme: `${theme === 'theme-dark' ? 'dark' : 'light'}`,
+      });
+    }
   };
 
   return (

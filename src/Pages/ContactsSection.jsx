@@ -1,8 +1,6 @@
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 import Forms, { IconButton, Modal } from '../components/Form';
 import { Contacts } from '../components/Contacts';
@@ -53,7 +51,6 @@ const ContactsSection = () => {
           </>
         </Modal>
       )}
-      <ToastContainer />
     </MainPage>
   );
 };

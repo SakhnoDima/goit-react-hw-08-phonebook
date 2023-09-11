@@ -1,14 +1,15 @@
 import { nanoid } from 'nanoid';
 import { Formik, ErrorMessage } from 'formik';
 import { object, string } from 'yup';
-import { toast } from 'react-toastify';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { operations, selectors } from 'redux/contacts/index';
 
+import { toast } from 'react-toastify';
+import { KEY_LS } from 'components/helpers/themtoggle';
+
 import { Label, Button, Forma, Input, Error } from './Form.styles';
 
-import { KEY_LS } from 'components/helpers/themtoggle';
-const theme = localStorage.getItem(KEY_LS);
 const schema = object({
   name: string().required('Name is required!'),
   number: string()
@@ -36,6 +37,7 @@ const Forms = ({ onSubmit }) => {
       contact => contact.name.toLowerCase().trim() === name.toLowerCase().trim()
     );
     if (includeName) {
+      const theme = localStorage.getItem(KEY_LS);
       toast.error(`${name} Is already in contacts`, {
         autoClose: 2000,
         theme: `${theme === 'theme-dark' ? 'dark' : 'light'}`,
@@ -48,11 +50,19 @@ const Forms = ({ onSubmit }) => {
       name: name,
       number: number,
     };
-    dispatch(operations.addContact(updateContacts)); //!add
-    toast.success(`${name} was added to your contacts`, {
-      autoClose: 2000,
-      theme: `${theme === 'theme-dark' ? 'dark' : 'light'}`,
-    });
+    const theme = localStorage.getItem(KEY_LS);
+    try {
+      dispatch(operations.addContact(updateContacts)).unwrap();
+      toast.success(`${name} was added to your contacts`, {
+        autoClose: 2000,
+        theme: `${theme === 'theme-dark' ? 'dark' : 'light'}`,
+      });
+    } catch (error) {
+      toast.error(error, {
+        autoClose: 2000,
+        theme: `${theme === 'theme-dark' ? 'dark' : 'light'}`,
+      });
+    }
     resetForm();
   };
 

@@ -3,6 +3,8 @@ import { Outlet } from 'react-router-dom';
 import AppBar from '../AppBar/AppBar';
 import { AiFillGithub } from 'react-icons/ai';
 import { Footer, Wrapper, Link, Main, Text, Loading } from './Layout.styles';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Layout = () => {
   return (
@@ -11,6 +13,7 @@ const Layout = () => {
       <Main>
         <Suspense fallback={<Loading>Loading ... </Loading>}>
           <Outlet />
+          <ToastContainer />
         </Suspense>
       </Main>
       <Footer>

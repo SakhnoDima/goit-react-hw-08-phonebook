@@ -5,7 +5,7 @@ import { Button, FormStyle, Input, Label } from './RegistrationForm.styles';
 import { useDispatch } from 'react-redux';
 import { operationsAuth } from '../../redux/auth/index';
 import { KEY_LS } from 'components/helpers/themtoggle';
-const theme = localStorage.getItem(KEY_LS);
+
 const RegisterForm = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
@@ -28,17 +28,17 @@ const RegisterForm = () => {
 
   const handleSubmit = async event => {
     event.preventDefault();
+
     try {
       await dispatch(
         operationsAuth.register({ name, email, password })
       ).unwrap();
     } catch (error) {
-      alert(`Something went wrong, try again`);
-      toast.error(error, {
+      const theme = localStorage.getItem(KEY_LS);
+      toast.error(`Something went wrong, try again`, {
         autoClose: 2000,
         theme: `${theme === 'theme-dark' ? 'dark' : 'light'}`,
       });
-      console.log(error);
     }
     setEmail('');
     setName('');
