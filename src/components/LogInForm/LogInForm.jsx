@@ -20,9 +20,14 @@ const LogInForm = () => {
     }
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
-    dispatch(operationsAuth.logIn({ email, password }));
+    try {
+      await dispatch(operationsAuth.logIn({ email, password })).unwrap();
+    } catch (error) {
+      alert(`Something went wrong, try again`);
+      console.log(error);
+    }
     setEmail('');
     setPassword('');
   };

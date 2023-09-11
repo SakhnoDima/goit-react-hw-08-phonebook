@@ -8,7 +8,7 @@ import { operations, selectors } from 'redux/contacts/index';
 import { Label, Button, Forma, Input, Error } from './Form.styles';
 
 import { KEY_LS } from 'components/helpers/themtoggle';
-
+const theme = localStorage.getItem(KEY_LS);
 const schema = object({
   name: string().required('Name is required!'),
   number: string()
@@ -36,7 +36,10 @@ const Forms = ({ onSubmit }) => {
       contact => contact.name.toLowerCase().trim() === name.toLowerCase().trim()
     );
     if (includeName) {
-      alert(`${name} Is already in contacts`);
+      toast.error(`${name} Is already in contacts`, {
+        autoClose: 2000,
+        theme: `${theme === 'theme-dark' ? 'dark' : 'light'}`,
+      });
       return;
     }
     // === додавання до списку крнтакту ===
@@ -46,9 +49,6 @@ const Forms = ({ onSubmit }) => {
       number: number,
     };
     dispatch(operations.addContact(updateContacts)); //!add
-
-    const theme = localStorage.getItem(KEY_LS);
-
     toast.success(`${name} was added to your contacts`, {
       autoClose: 2000,
       theme: `${theme === 'theme-dark' ? 'dark' : 'light'}`,
