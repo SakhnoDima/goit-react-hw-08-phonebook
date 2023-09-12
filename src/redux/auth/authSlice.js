@@ -54,6 +54,7 @@ const authSlice = createSlice({
         state.isRefreshing = false;
         state.error = action.payload;
         state.isLoggedIn = false;
+        state.token = null;
       });
   },
 });
